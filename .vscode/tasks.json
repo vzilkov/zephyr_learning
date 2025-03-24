@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run QEMU",
+            "type": "shell",
+            "command": "make -C ${workspaceFolder}/build debugserver_qemu",
+            "isBackground": true,
+            "problemMatcher": [ "$gcc" ]
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "/home/developer/app/zephyr_learning",
+    "files.associations": {
+        "stacktrace": "cpp"
+    }
+}
