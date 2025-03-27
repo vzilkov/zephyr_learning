@@ -8,6 +8,7 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
+#include "threads.h"
 
 /*
  * The synchronization demo has two threads that utilize semaphores and sleeping
@@ -124,5 +125,11 @@ int main(void)
 #endif
 
 	k_thread_start(&thread_a_data);
+	uint32_t count = 0;
+	while(1){
+		printk("Main thread! %d\n", count++);
+		hello();
+		k_msleep(SLEEPTIME);
+	}
 	return 0;
 }

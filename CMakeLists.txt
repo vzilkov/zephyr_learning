@@ -7,4 +7,6 @@ message("Zephyr base is: $ENV{ZEPHYR_BASE}")
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(own_project)
 
-target_sources(app PRIVATE src/main.c)
+add_subdirectory(threads_exercise)
+target_sources(app PRIVATE  src/main.c)
+target_link_libraries(app PRIVATE threads_exercise_lib)
