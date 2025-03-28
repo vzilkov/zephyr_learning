@@ -1,5 +1,5 @@
 {
-    "cmake.sourceDirectory": "/workspaces/zephyr_lrn/zephyr_learning",
+    "cmake.sourceDirectory": "/app/zephyr_learning",
     "files.associations": {
         "*.cpp": "cpp",
         "*.hpp": "cpp",
