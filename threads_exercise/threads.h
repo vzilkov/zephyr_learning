@@ -1,1 +1,1 @@
-void hello();
+void hello_thread1(void *arg1, void *arg2, void *arg3);

@@ -10,110 +10,19 @@
 #include <zephyr/sys/printk.h>
 #include "threads.h"
 
-/*
- * The synchronization demo has two threads that utilize semaphores and sleeping
- * to take turns printing a greeting message at a controlled rate. The demo
- * shows both the static and dynamic approaches for spawning a thread; a real
- * world application would likely use the static approach for both threads.
- */
-
-#define PIN_THREADS (IS_ENABLED(CONFIG_SMP) && IS_ENABLED(CONFIG_SCHED_CPU_MASK))
-
-/* size of stack area used by each thread */
-#define STACKSIZE 1024
-
-/* scheduling priority used by each thread */
-#define PRIORITY 7
-
-/* delay between greetings (in ms) */
-#define SLEEPTIME 500
-
-
-/*
- * @param my_name      thread identification string
- * @param my_sem       thread's own semaphore
- * @param other_sem    other thread's semaphore
- */
-void hello_loop(const char *my_name,
-		   struct k_sem *my_sem, struct k_sem *other_sem)
-{
-	const char *tname;
-	uint8_t cpu;
-	struct k_thread *current_thread;
-
-	while (1) {
-		/* take my semaphore */
-		k_sem_take(my_sem, K_FOREVER);
-
-		current_thread = k_current_get();
-		tname = k_thread_name_get(current_thread);
-#if CONFIG_SMP
-		cpu = arch_curr_cpu()->id;
-#else
-		cpu = 0;
-#endif
-		/* say "hello" */
-		if (tname == NULL) {
-			printk("%s: Hello World from cpu %d on %s!\n",
-				my_name, cpu, CONFIG_BOARD);
-		} else {
-			printk("%s: Hello World from cpu %d on %s!\n",
-				tname, cpu, CONFIG_BOARD);
-		}
-
-		/* wait a while, then let other thread have a turn */
-		k_busy_wait(100000);
-		k_msleep(SLEEPTIME);
-		k_sem_give(other_sem);
-	}
-}
-
-/* define semaphores */
-K_SEM_DEFINE(thread_a_sem, 1, 1);	/* starts off "available" */
-K_SEM_DEFINE(thread_b_sem, 0, 1);	/* starts off "not available" */
-
-/* thread_a is a dynamic thread that is spawned in main */
-void thread_a_entry_point(void *dummy1, void *dummy2, void *dummy3)
-{
-	ARG_UNUSED(dummy1);
-	ARG_UNUSED(dummy2);
-	ARG_UNUSED(dummy3);
-
-	/* invoke routine to ping-pong hello messages with thread_b */
-	hello_loop(__func__, &thread_a_sem, &thread_b_sem);
-}
-K_THREAD_STACK_DEFINE(thread_a_stack_area, STACKSIZE);
-static struct k_thread thread_a_data;
-
-/* thread_b is a static thread spawned immediately */
-void thread_b_entry_point(void *dummy1, void *dummy2, void *dummy3)
-{
-	ARG_UNUSED(dummy1);
-	ARG_UNUSED(dummy2);
-	ARG_UNUSED(dummy3);
-
-	/* invoke routine to ping-pong hello messages with thread_a */
-	hello_loop(__func__, &thread_b_sem, &thread_a_sem);
-}
-K_THREAD_DEFINE(thread_b, STACKSIZE,
-				thread_b_entry_point, NULL, NULL, NULL,
-				PRIORITY, 0, 0);
-extern const k_tid_t thread_b;
+#define HELLO_THREAD1_STACK_SIZE 128
+#define HELLO_THREAD1_PRIO 7
+K_THREAD_STACK_DEFINE(hello_thread1_stack, HELLO_THREAD1_STACK_SIZE);
+struct k_thread hello_thread1_data;
 
 int main(void)
 {
-	k_thread_create(&thread_a_data, thread_a_stack_area,
-			K_THREAD_STACK_SIZEOF(thread_a_stack_area),
-			thread_a_entry_point, NULL, NULL, NULL,
-			PRIORITY, 0, K_FOREVER);
-	k_thread_name_set(&thread_a_data, "thread_a");
-
-	k_thread_start(&thread_a_data);
+	k_thread_create(&hello_thread1_data, hello_thread1_stack, HELLO_THREAD1_STACK_SIZE,
+					hello_thread1, NULL, NULL, NULL, HELLO_THREAD1_PRIO, 0, K_NO_WAIT);
 	uint32_t count = 0;
 	while(1){
 		printk("Main thread! %d\n", count++);
-		hello();
-		k_msleep(SLEEPTIME);
+		k_sleep(K_MSEC(1000));
 	}
 	return 0;
 }
