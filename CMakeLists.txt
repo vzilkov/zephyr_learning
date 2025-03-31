@@ -11,4 +11,4 @@ add_subdirectory(threads_exercise)
 target_sources(app PRIVATE src/main.c)
 target_link_libraries(app PRIVATE threads_exercise_lib)
 
-target_compile_options(app PRIVATE "-Os")
+target_compile_options(app PRIVATE -Os)

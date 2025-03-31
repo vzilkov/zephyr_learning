@@ -12,7 +12,7 @@
         "MIMode": "gdb",
         "miDebuggerPath": "gdb",
         "miDebuggerServerAddress": "localhost:1234",
-        "stopAtEntry": true,
+        "stopAtEntry": false,
         "preLaunchTask": "Run QEMU",
         "setupCommands": [
             {
