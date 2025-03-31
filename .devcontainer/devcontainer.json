@@ -1,0 +1,29 @@
+{
+    "name": "Zephyr dev container",
+    "build": {
+        "context": "..",
+        "dockerfile": "../Dockerfile",
+    },
+    "mounts": [
+        {   
+        "source": "/home/dev/zephyr_lrn/zephyr_learning",
+        "target": "/app/zephyr_learning",
+        "type": "bind",
+        "consistency": "cached",
+        "readOnly": false,
+        "options": "bind-propagation=rw"
+        }
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bash/bin"
+    },
+    "extensions": [
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "github.vscode-pull-request-github"
+    ],
+    "forwardPorts": [80, 443, 1234],
+    "workspaceFolder": "/app/zephyr_learning"
+}
