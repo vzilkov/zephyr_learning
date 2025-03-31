@@ -29,10 +29,6 @@ int main(void)
 	
 	// k_thread_start(&hello_thread2_data);
 	// k_thread_start(&hello_thread1_data);
-	while(1){
-		// printk("Hello, I am the main thread!\n");
-		k_msleep(1000);
-	}
 	
 	return 0;
 }
