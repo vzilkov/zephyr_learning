@@ -4,6 +4,7 @@
         "name": "(gdb) Launch zephyr app",
         "type": "cppdbg",
         "request": "launch",
+        "preLaunchTask": "Run QEMU",
         "program": "${workspaceFolder}/build/zephyr/zephyr.elf",
         "args": [],
         "cwd": "${workspaceFolder}",
@@ -13,7 +14,6 @@
         "miDebuggerPath": "gdb",
         "miDebuggerServerAddress": "localhost:1234",
         "stopAtEntry": false,
-        "preLaunchTask": "Run QEMU",
         "setupCommands": [
             {
                 "description": "Enable pretty-printing for gdb",
@@ -25,7 +25,11 @@
                 "text": "-gdb-set disassembly-flavor intel",
                 "ignoreFailures": true
             }
-        ]
+        ],
+        "logging": {
+            "engineLogging": true
+        },
+        "targetArchitecture": "x86"
     }
     ]
 }
