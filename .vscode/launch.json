@@ -13,6 +13,7 @@
         "MIMode": "gdb",
         "miDebuggerPath": "gdb",
         "miDebuggerServerAddress": "localhost:1234",
+        "serverLaunchTimeout": 5000,
         "stopAtEntry": false,
         "setupCommands": [
             {
