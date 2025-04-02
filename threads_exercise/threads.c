@@ -9,8 +9,9 @@ void hello_thread1(void *arg1, void *arg2, void *arg3){
     ARG_UNUSED(arg3);
     unsigned int count = 0;
     while(1){
-        printf("Hello, I am a thread1! %d\n", count++);
-        k_msleep(500);
+        //specially made for the exercise without mutex or 
+        // another synchronization methods
+        printf("Hello, AAAAAAAA thread1! %d\n", ++count);
     }
 }
 
@@ -20,7 +21,6 @@ void hello_thread2(void *arg1, void *arg2, void *arg3){
     ARG_UNUSED(arg3);
     unsigned int count = 0;
     while(1){
-        printf("Bye, I am a thread2! %d\n", count++);
-        k_msleep(100);
+        printf("Bye, BBBBBBB thread2! %d\n", ++count);
     }
 }
