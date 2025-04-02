@@ -10,12 +10,12 @@
 #include <zephyr/sys/printk.h>
 #include "threads.h"
 
-#define HELLO_THREAD1_STACK_SIZE 256
+#define HELLO_THREAD1_STACK_SIZE 1024
 #define HELLO_THREAD1_PRIO 5
 K_THREAD_STACK_DEFINE(hello_thread1_stack, HELLO_THREAD1_STACK_SIZE);
 struct k_thread hello_thread1_data;
 
-#define HELLO_THREAD2_STACK_SIZE 256
+#define HELLO_THREAD2_STACK_SIZE 1024
 #define HELLO_THREAD2_PRIO 5
 K_THREAD_STACK_DEFINE(hello_thread2_stack, HELLO_THREAD2_STACK_SIZE);
 struct k_thread hello_thread2_data;
