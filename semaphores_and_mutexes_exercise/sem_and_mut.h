@@ -1,0 +1,1 @@
+void print_function(char *str, int size);
