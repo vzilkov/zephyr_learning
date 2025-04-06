@@ -6,12 +6,20 @@
     },
     "mounts": [
         {   
-        "source": "${localWorkspaceFolder}",
-        "target": "/app/zephyr_learning",
-        "type": "bind",
-        "consistency": "cached",
-        "readOnly": false,
-        "options": "bind-propagation=rw"
+            "source": "${localWorkspaceFolder}",
+            "target": "/app/zephyr_learning",
+            "type": "bind",
+            "consistency": "cached",
+            "readOnly": false,
+            "options": "bind-propagation=rw"
+        },
+        {
+            "source": "${env:HOME}/.gitconfig",
+            "target": "/home/${containerUser}/.gitconfig",
+            "type": "bind",
+            "consistency": "cached",
+            "readOnly": true,
+            "options": "bind-propagation=r"
         }
     ],
     "settings": {
