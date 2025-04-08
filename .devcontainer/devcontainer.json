@@ -31,7 +31,8 @@
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.cmake-tools",
         "ms-vscode.makefile-tools",
-        "github.vscode-pull-request-github"
+        "github.vscode-pull-request-github",
+        // "nordic-semiconductor.nrf-devicetree"
     ],
     "forwardPorts": [80, 443, 1234],
     "workspaceFolder": "/app/zephyr_learning"
