@@ -1,5 +1,9 @@
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
+ARG HTTP_PROXY=""
+ENV http_proxy=${HTTP_PROXY}
+ENV https_proxy=${HTTP_PROXY}
+ENV no_proxy="localhost,127.0.0.1"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git libglib2.0-dev libfdt-dev libpixman-1-dev zlib1g-dev bzip2 \
@@ -15,6 +19,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
+RUN git config --global http.proxy ${HTTP_PROXY} && \
+    git config --global https.proxy ${HTTP_PROXY}
 RUN git clone https://github.com/zephyrproject-rtos/zephyr
 ENV ZEPHYR_BASE=/app/zephyr
 RUN pip install -r ${ZEPHYR_BASE}/scripts/requirements.txt
@@ -29,4 +35,4 @@ RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/
 # installs the whole available compilers. Check minimal version.
 ENV ZEPHYR_SDK_INSTALL_DIR=/app/zephyr-sdk-0.17.0
 
-EXPOSE 80 443 1234
+EXPOSE 80 443 912 1234

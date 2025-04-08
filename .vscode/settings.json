@@ -6,5 +6,6 @@
         "*.h": "c",
         "*.c": "c",
         "CMakeLists.txt": "cmake"
-    }
+    },
+    "cmake.ignoreCMakeListsMissing": true
 }

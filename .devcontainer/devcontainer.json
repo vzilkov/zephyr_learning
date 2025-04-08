@@ -3,6 +3,9 @@
     "build": {
         "context": "..",
         "dockerfile": "Dockerfile",
+        "args": {
+            "HTTP_PROXY": "${localEnv:HTTP_PROXY}"
+        }
     },
     "mounts": [
         {   
@@ -15,7 +18,7 @@
         },
         {
             "source": "${env:HOME}/.gitconfig",
-            "target": "/home/${containerUser}/.gitconfig",
+            "target": "/root/.gitconfig",
             "type": "bind",
             "consistency": "cached",
             "readOnly": true,
@@ -31,9 +34,13 @@
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.cmake-tools",
         "ms-vscode.makefile-tools",
-        "github.vscode-pull-request-github",
-        // "nordic-semiconductor.nrf-devicetree"
+        "github.vscode-pull-request-github"
     ],
-    "forwardPorts": [80, 443, 1234],
+    "env": {
+        "http_proxy": "${localEnv:HTTP_PROXY}",
+        "https_proxy": "${localEnv:HTTPS_PROXY}",
+        "no_proxy": "localhost,127.0.0.1"
+    },
+    "forwardPorts": [80, 443, 912, 1234],
     "workspaceFolder": "/app/zephyr_learning"
 }
