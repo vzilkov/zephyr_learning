@@ -1,11 +1,28 @@
 {
     "cmake.sourceDirectory": "/app/zephyr_learning",
     "files.associations": {
-        "*.cpp": "cpp",
-        "*.hpp": "cpp",
-        "*.h": "c",
-        "*.c": "c",
-        "CMakeLists.txt": "cmake"
+    "*.h": "c",
+    "*.c": "c",
+    "*.hpp": "cpp",
+    "*.cpp": "cpp",
+    "*.py": "python",
+    "*.sh": "shellscript",
+    "CMakeLists.txt": "cmake",
+    "*.cmake": "cmake",
+    "*.json": "json"
+  },
+  "cmake.options.advanced": {
+    "build": {
+      "statusBarVisibility": "visible",
+      "inheritDefault": "visible"
     },
-    "cmake.ignoreCMakeListsMissing": true
+    "launch": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "debug": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    }
+  }
 }
