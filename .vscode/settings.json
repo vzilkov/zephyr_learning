@@ -1,5 +1,4 @@
 {
-    "cmake.sourceDirectory": "/app/zephyr_learning",
     "files.associations": {
     "*.h": "c",
     "*.c": "c",
@@ -11,6 +10,8 @@
     "*.cmake": "cmake",
     "*.json": "json"
   },
+  "cmake.sourceDirectory": "/app/zephyr_learning",
+  "cmake.options.statusBarVisibility": "visible",
   "cmake.options.advanced": {
     "build": {
       "statusBarVisibility": "visible",
@@ -21,6 +22,50 @@
       "inheritDefault": "hidden"
     },
     "debug": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "workflow": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "cpack": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "ctest": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "packagePreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "buildPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "debugPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "workflowPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "cpackPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "ctestPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "testPreset": {
+      "statusBarVisibility": "hidden",
+      "inheritDefault": "hidden"
+    },
+    "buildTarget": {
       "statusBarVisibility": "hidden",
       "inheritDefault": "hidden"
     }

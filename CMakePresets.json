@@ -1,4 +1,3 @@
-
 {
     "version": 4,
     "cmakeMinimumRequired": {
@@ -25,7 +24,7 @@
         "cacheVariables": {
           "CMAKE_BUILD_TYPE": "Debug",
           "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
-        }        
+        }
       },
       {
         "name": "common",
