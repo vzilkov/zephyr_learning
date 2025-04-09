@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "/app/zephyr-sdk-0.17.0/sysroots/x86_64-pokysdk-linux/usr/bin/qemu-system-i386",
             "args": [
-                "-kernel", "/app/zephyr_learning/build/zephyr/zephyr.elf",
+                "-kernel", "/app/zephyr_learning/build/debug/zephyr/zephyr.elf",
                 "-m", "32",
                 "-cpu", "qemu32,+nx,+pae",
                 "-machine", "q35",

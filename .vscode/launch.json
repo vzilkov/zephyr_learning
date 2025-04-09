@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "preLaunchTask": "Run QEMU",
-        "program": "${workspaceFolder}/build/zephyr/zephyr.elf",
+        "program": "${workspaceFolder}/build/debug/zephyr/zephyr.elf",
         "args": [],
         "cwd": "${workspaceFolder}",
         "environment": [],
