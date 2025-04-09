@@ -1,48 +1,60 @@
 {
     "version": 4,
     "cmakeMinimumRequired": {
-      "major": 1,
-      "minor": 2,
-      "patch": 3
+        "major": 1,
+        "minor": 2,
+        "patch": 3
     },
     "configurePresets": [
-      {
-        "name": "default",
-        "description": "Default configuration",
-        "inherits": "common",
-        "binaryDir": "${sourceDir}/build/release",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Release",
-          "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+        {
+            "name": "release",
+            "description": "Default configuration",
+            "inherits": "common",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "debug",
+            "description": "Debug configuration",
+            "inherits": "common",
+            "binaryDir": "${sourceDir}/build/debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "common",
+            "hidden": true,
+            "cacheVariables": {
+                "BOARD": "qemu_x86",
+                "DTC_OVERLAY_FILE": "${sourceDir}/boards/qemu_x86.overlay"
+            }
+        },
+        {
+            "name": "Configure preset using toolchain file",
+            "displayName": "Configure preset using toolchain file",
+            "description": "Sets Ninja generator, build and install directory",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
         }
-      },
-      {
-        "name": "debug",
-        "description": "Debug configuration",
-        "inherits": "common",
-        "binaryDir": "${sourceDir}/build/debug",
-        "cacheVariables": {
-          "CMAKE_BUILD_TYPE": "Debug",
-          "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
-        }
-      },
-      {
-        "name": "common",
-        "hidden": true,
-        "cacheVariables": {
-            "BOARD": "qemu_x86",
-            "DTC_OVERLAY_FILE": "${sourceDir}/boards/qemu_x86.overlay"
-        }
-      }
     ],
     "buildPresets": [
-      {
-        "name": "default",
-        "configurePreset": "default"
-      },
-      {
-        "name": "debug",
-        "configurePreset": "debug"
-      }
+        {
+            "name": "release",
+            "configurePreset": "release"
+        },
+        {
+            "name": "debug",
+            "configurePreset": "debug"
+        }
     ]
 }
