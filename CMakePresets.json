@@ -30,8 +30,7 @@
             "name": "common",
             "hidden": true,
             "cacheVariables": {
-                "BOARD": "qemu_x86",
-                "DTC_OVERLAY_FILE": "${sourceDir}/boards/qemu_x86.overlay"
+                "BOARD": "qemu_x86"
             }
         },
         {
