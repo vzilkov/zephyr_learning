@@ -42,8 +42,8 @@
       "inheritDefault": "hidden"
     },
     "buildPreset": {
-      "statusBarVisibility": "hidden",
-      "inheritDefault": "hidden"
+      "statusBarVisibility": "visible",
+      "inheritDefault": "visible"
     },
     "debugPreset": {
       "statusBarVisibility": "hidden",
