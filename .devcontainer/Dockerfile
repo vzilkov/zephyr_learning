@@ -21,12 +21,15 @@ WORKDIR /app
 
 RUN git config --global http.proxy ${HTTP_PROXY} && \
     git config --global https.proxy ${HTTP_PROXY}
-RUN git clone https://github.com/zephyrproject-rtos/zephyr
-ENV ZEPHYR_BASE=/app/zephyr
-RUN pip install -r ${ZEPHYR_BASE}/scripts/requirements.txt
-RUN cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
 
-# COPY zephyr-sdk-0.17.0_linux-x86_64.tar.xz /home/${USERNAME}/app
+WORKDIR /app/zephyr_learning
+RUN git clone https://github.com/zephyrproject-rtos/zephyr
+ENV ZEPHYR_BASE=/app/zephyr_learning/zephyr
+RUN pip install west && \
+    pip install -r ${ZEPHYR_BASE}/scripts/requirements.txt && \
+    cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
+
+WORKDIR /app
 RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/zephyr-sdk-0.17.0_linux-x86_64.tar.xz \
     && wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/sha256.sum | shasum --check --ignore-missing \
     && tar xvf zephyr-sdk-0.17.0_linux-x86_64.tar.xz \
