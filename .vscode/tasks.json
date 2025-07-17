@@ -11,7 +11,7 @@
                 "-cpu", "qemu32,+nx,+pae",
                 "-machine", "q35",
                 "-no-reboot", "-nographic",
-                "-icount", "shift=10",
+                "-icount", "shift=5",
                 "-s", "-S"
             ],
             "isBackground": true,
