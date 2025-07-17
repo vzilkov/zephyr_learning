@@ -23,13 +23,14 @@
             "binaryDir": "${sourceDir}/build/debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "ZEPHYR_BASE": "${sourceDir}/zephyr",
+                "Zephyr_DIR": "${sourceDir}/zephyr/share/zephyr-package/cmake/"
             }
         },
         {
             "name": "common",
             "hidden": true,
-            "generator": "Ninja",
             "cacheVariables": {
                 "BOARD": "qemu_x86"
             }
