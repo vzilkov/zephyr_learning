@@ -24,8 +24,8 @@ RUN git config --global http.proxy ${HTTP_PROXY} && \
 
 WORKDIR /app/zephyr_learning
 RUN git submodule update --init --recursive
-ENV ZEPHYR_BASE=/app/zephyr_learning/zephyr
-RUN pip install west && \
+RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
+    pip install west && \
     pip install -r ${ZEPHYR_BASE}/scripts/requirements.txt && \
     cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
 
