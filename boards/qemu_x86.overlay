@@ -1,0 +1,9 @@
+/{
+    hw_fake {
+			compatible = "fake,hw";
+			status = "okay";
+			label = "HW_FAKE";
+		};
+};
+
+
