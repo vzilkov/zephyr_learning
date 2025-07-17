@@ -5,7 +5,7 @@
 #include <zephyr/sys/printk.h>
 #include <string.h>
 
-#include <zephyr/drivers/fake_hw.h> // ???
+#include <zephyr/drivers/fake/hw.h> // ???
 
 static struct k_timer timer_thread1;
 #define TIMER_INTERVAL_MS 100
