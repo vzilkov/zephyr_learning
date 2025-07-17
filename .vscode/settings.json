@@ -1,5 +1,6 @@
 {
     "files.associations": {
+    "Kconfig": "plaintext",
     "*.h": "c",
     "*.c": "c",
     "*.hpp": "cpp",
