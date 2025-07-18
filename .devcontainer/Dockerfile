@@ -30,10 +30,12 @@ RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/
 RUN git config --global http.proxy ${HTTP_PROXY} && \
     git config --global https.proxy ${HTTP_PROXY}
 
-# WORKDIR /app/zephyr_learning
+# Clone the zephyr_learning repository and initialize submodules
 RUN git clone https://github.com/vzilkov/zephyr_learning.git && \
     cd zephyr_learning && \
     git submodule init && git submodule update --remote
+
+WORKDIR /app/zephyr_learning
 
 RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
     python3 -m venv .xvenv && \
