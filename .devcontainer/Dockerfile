@@ -30,12 +30,13 @@ RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/
 RUN git config --global http.proxy ${HTTP_PROXY} && \
     git config --global https.proxy ${HTTP_PROXY}
 
-# WORKDIR /app/zephyr_learning
-# RUN git submodule update --init --recursive
-# RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
-#     python3 -m venv .xvenv && \
-#     .xvenv/bin/python3 -m pip install --upgrade pip && \
-#     .xvenv/bin/python3 -m pip install -r requirements.txt && \
-#     cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
+WORKDIR /app/zephyr_learning
+RUN git clone https://github.com/vzilkov/zephyr_learning.git && \
+    git submodule update --init --recursive
+RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
+    python3 -m venv .xvenv && \
+    .xvenv/bin/python3 -m pip install --upgrade pip && \
+    .xvenv/bin/python3 -m pip install -r requirements.txt && \
+    cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
 
 EXPOSE 80 443 912 1234
