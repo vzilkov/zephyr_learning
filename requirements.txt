@@ -1,4 +1,4 @@
 # requirements for zephyr project
 west
 pyelftools
--r zephyr/scripts/requirements.txt
+# -r zephyr/scripts/requirements.txt
