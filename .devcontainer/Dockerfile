@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 ARG HTTP_PROXY=""
 ENV http_proxy=${HTTP_PROXY}
@@ -31,9 +31,7 @@ RUN git config --global http.proxy ${HTTP_PROXY} && \
     git config --global https.proxy ${HTTP_PROXY}
 
 # Clone the zephyr_learning repository and initialize submodules
-RUN git clone https://github.com/vzilkov/zephyr_learning.git && \
-    cd zephyr_learning && \
-    git submodule init && git submodule update --remote
+RUN git clone --recursive --remote https://github.com/vzilkov/zephyr_learning.git
 
 WORKDIR /app/zephyr_learning
 

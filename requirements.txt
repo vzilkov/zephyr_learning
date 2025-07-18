@@ -1,4 +1,3 @@
 # requirements for zephyr project
 west
-pyelftools
 -r zephyr/scripts/requirements.txt # depends on zephyr submodule
