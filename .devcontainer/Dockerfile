@@ -18,24 +18,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-
-RUN git config --global http.proxy ${HTTP_PROXY} && \
-    git config --global https.proxy ${HTTP_PROXY}
-
-WORKDIR /app/zephyr_learning
-RUN git submodule update --init --recursive
-RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
-    pip install west && \
-    pip install -r ${ZEPHYR_BASE}/scripts/requirements.txt && \
-    cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
-
-WORKDIR /app
+# installs the whole available compilers. Check minimal version.
+ARG ZEPHYR_SDK_INSTALL_DIR_ARG="/app/zephyr-sdk-0.17.0"
+ENV ZEPHYR_SDK_INSTALL_DIR=${ZEPHYR_SDK_INSTALL_DIR_ARG}
 RUN wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/zephyr-sdk-0.17.0_linux-x86_64.tar.xz \
     && wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.17.0/sha256.sum | shasum --check --ignore-missing \
     && tar xvf zephyr-sdk-0.17.0_linux-x86_64.tar.xz \
     && yes | ./zephyr-sdk-0.17.0/setup.sh \
     && rm zephyr-sdk-0.17.0_linux-x86_64.tar.xz
-# installs the whole available compilers. Check minimal version.
-ENV ZEPHYR_SDK_INSTALL_DIR=/app/zephyr-sdk-0.17.0
+
+RUN git config --global http.proxy ${HTTP_PROXY} && \
+    git config --global https.proxy ${HTTP_PROXY}
+
+# WORKDIR /app/zephyr_learning
+# RUN git submodule update --init --recursive
+# RUN ZEPHYR_BASE=/app/zephyr_learning/zephyr && \
+#     python3 -m venv .xvenv && \
+#     .xvenv/bin/python3 -m pip install --upgrade pip && \
+#     .xvenv/bin/python3 -m pip install -r requirements.txt && \
+#     cmake -P ${ZEPHYR_BASE}/share/zephyr-package/cmake/zephyr_export.cmake
 
 EXPOSE 80 443 912 1234
