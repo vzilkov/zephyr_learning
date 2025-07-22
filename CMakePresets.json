@@ -26,7 +26,8 @@
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
                 "Python3_EXECUTABLE": "${sourceDir}/.xvenv/bin/python3",
                 "ZEPHYR_BASE": "${sourceDir}/zephyr",
-                "Zephyr_DIR": "${sourceDir}/zephyr/share/zephyr-package/cmake/"
+                "Zephyr_DIR": "${sourceDir}/zephyr/share/zephyr-package/cmake/",
+                "ZEPHYR_MODULES": "${sourceDir}/modules/fakee"
             }
         },
         {

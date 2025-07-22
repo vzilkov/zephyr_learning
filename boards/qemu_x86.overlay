@@ -4,6 +4,10 @@
 			status = "okay";
 			label = "HW_FAKE";
 		};
+
+	hww_fakee {
+		compatible = "fakee,hww";
+			status = "okay";
+			label = "HWW_FAKEE";
+	};
 };
-
-

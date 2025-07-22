@@ -2,10 +2,12 @@
 cmake_minimum_required(VERSION 3.20.0)
 
 message("Zephyr base is: $ENV{ZEPHYR_BASE}")
+message("Zephyr modules are: ${ZEPHYR_MODULES}")
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 # set(LINKER_SCRIPT "${CMAKE_CURRENT_SOURCE_DIR}/linker.ld")
 # set_target_properties(app PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+
 project(own_project)
 target_sources(app PRIVATE src/main.c)
 

@@ -32,15 +32,28 @@ void hello_thread1(struct k_msgq *my_msgq, void *arg2, void *arg3){
 
     k_timer_init(&timer_thread1, timer_expiry_function, timer_stop_function);
     // k_timer_start(&timer_thread1, K_MSEC(TIMER_INTERVAL_MS), K_MSEC(TIMER_INTERVAL_MS));
-
-    const struct device *dev = device_get_binding("FAKE_HW_INIT");
-    if (dev) {
-        const struct fake_driver_api *api = (const struct fake_driver_api *)dev->api;
-        // struct sim_flash_driver_api *api = (const struct sim_flash_driver_api *)dev->api;
-        api->fake_api_print(dev);
-    } else {
-        printk("Device not found\n");
+    {
+        const struct device *dev = device_get_binding("FAKE_HW_INIT");
+        if (dev) {
+            const struct fake_driver_api *api = (const struct fake_driver_api *)dev->api;
+            // struct sim_flash_driver_api *api = (const struct sim_flash_driver_api *)dev->api;
+            api->fake_api_print(dev);
+        } else {
+            printk("Device not found\n");
+        }
     }
+    
+    {
+        const struct device *dev = device_get_binding("FAKEE_HWW_INIT");
+        if (dev) {
+            const struct fake_driver_api *api = (const struct fake_driver_api *)dev->api;
+            // struct sim_flash_driver_api *api = (const struct sim_flash_driver_api *)dev->api;
+            api->fake_api_print(dev);
+        } else {
+            printk("Device not found\n");
+        }
+    }
+    
 
     while(1)
     {
