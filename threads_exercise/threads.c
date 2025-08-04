@@ -5,7 +5,13 @@
 #include <zephyr/sys/printk.h>
 #include <string.h>
 
-#include <zephyr/drivers/fake/hw.h> // ???
+// #include <device.h>
+// #include <devicetree.h>
+
+#include <zephyr/devicetree.h>
+
+// #include <zephyr/drivers/fake/hww.h> // ???
+#include "../modules/fakee/hww.h" // ???
 
 static struct k_timer timer_thread1;
 #define TIMER_INTERVAL_MS 100
@@ -32,28 +38,28 @@ void hello_thread1(struct k_msgq *my_msgq, void *arg2, void *arg3){
 
     k_timer_init(&timer_thread1, timer_expiry_function, timer_stop_function);
     // k_timer_start(&timer_thread1, K_MSEC(TIMER_INTERVAL_MS), K_MSEC(TIMER_INTERVAL_MS));
-    {
-        const struct device *dev = device_get_binding("FAKE_HW_INIT");
-        if (dev) {
-            const struct fake_driver_api *api = (const struct fake_driver_api *)dev->api;
-            // struct sim_flash_driver_api *api = (const struct sim_flash_driver_api *)dev->api;
-            api->fake_api_print(dev);
-        } else {
-            printk("Device not found\n");
-        }
-    }
     
-    {
-        const struct device *dev = device_get_binding("FAKEE_HWW_INIT");
-        if (dev) {
-            const struct fake_driver_api *api = (const struct fake_driver_api *)dev->api;
-            // struct sim_flash_driver_api *api = (const struct sim_flash_driver_api *)dev->api;
-            api->fake_api_print(dev);
-        } else {
-            printk("Device not found\n");
-        }
-    }
+    #define MY_HWW DEVICE_DT_NAME_GET(hww_fakee) // DT_NODELABEL(hww_fakee)
+    volatile struct device *dev1;
     
+    // #if DT_NODE_EXISTS(DT_NODELABEL(hww_fakee))
+    //     dev1 = DEVICE_DT_GET(DT_NODELABEL(hww_fakee));
+    // #else
+    //     #error "Node is disabled"
+    // #endif
+    // DT_NODE_FULL_NAME(DT_NODELABEL(hww_fakee));
+    #if DT_NODE_EXISTS(DT_ALIAS(my_hw))
+        dev1 = DEVICE_DT_GET(DT_ALIAS(my_hw));
+    #else
+        #error "woops"
+    #endif
+    
+    if (dev1) {
+        const struct fakee_driver_api *api = (const struct fakee_driver_api *)dev1->api;
+        api->fakee_api_print(dev1);
+    } else {
+        printk("Device not found\n");
+    } 
 
     while(1)
     {

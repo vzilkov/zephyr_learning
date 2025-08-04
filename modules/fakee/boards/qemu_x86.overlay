@@ -1,13 +1,18 @@
 /{
-    hw_fake {
+    hw_fake: hw_fake {
 			compatible = "fake,hw";
 			status = "okay";
 			label = "HW_FAKE";
-		};
+	};
 
-	hww_fakee {
-		compatible = "fakee,hww";
+	hww_fakee: hww_fakee {
+			compatible = "fake,hw";
 			status = "okay";
 			label = "HWW_FAKEE";
+	};
+
+
+	aliases {
+		my-hw = &hww_fakee;
 	};
 };
