@@ -6,7 +6,7 @@
 	};
 
 	hww_fakee: hww_fakee {
-			compatible = "fake,hw";
+			compatible = "fakeee,hwww";
 			status = "okay";
 			label = "HWW_FAKEE";
 	};
